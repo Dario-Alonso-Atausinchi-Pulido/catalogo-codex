@@ -212,9 +212,30 @@ export const MEMORY_CARDS_MANIFEST: GameManifest = {
     height: 720,
     pixelArt: false
   },
-  coverImagePath: 'assets/games/memory-cards/ui/cover.png'
+  coverImagePath: 'assets/games/memory-cards/cover.png',
+  coverPlaceholderPath: 'assets/games/memory-cards/cover-placeholder.svg'
 };
 ```
+
+## Regla de portadas y placeholders
+
+Cada juego nuevo debe registrar una portada reemplazable.
+
+Convencion recomendada:
+
+- Archivo final esperado: `public/assets/games/<game-slug>/cover.png`
+- Placeholder inicial: `public/assets/games/<game-slug>/cover-placeholder.svg`
+
+Flujo:
+
+1. El manifiesto apunta `coverImagePath` al archivo final esperado.
+2. Si ese archivo todavia no existe, el manifiesto define `coverPlaceholderPath`.
+3. El catalogo y la vista del juego usan el placeholder como fallback sin romper la UI.
+4. Cuando exista arte final, basta con colocar `cover.png` en la misma carpeta del slug.
+
+Regla importante:
+
+La portada, su placeholder y cualquier recurso visual del juego deben vivir dentro de `public/assets/games/<game-slug>/`.
 
 ## Cosas que no se deben hacer
 

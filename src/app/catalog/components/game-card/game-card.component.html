@@ -1,23 +1,37 @@
-<article class="game-card panel-surface">
-  <div class="game-card__header">
-    <div class="game-card__title-block">
-      <p class="eyebrow">Slot {{ game().slug }}</p>
-      <h3>{{ game().title }}</h3>
-    </div>
+<article class="game-card panel-surface" [class.game-card--interactive]="isAvailable()">
+  @if (isAvailable()) {
+    <a
+      class="game-card__hitbox"
+      [routerLink]="game().routePath"
+      [attr.aria-label]="'Entrar a ' + game().title"
+    ></a>
+  }
 
-    <span class="game-card__status">{{ game().status }}</span>
+  <div class="game-card__visual">
+    @if (hasCover()) {
+      <img
+        [src]="resolvedCoverPath()"
+        [alt]="'Portada de ' + game().title"
+        (error)="onCoverError()"
+      />
+    } @else {
+      <div class="game-card__placeholder" aria-hidden="true">
+        <span>{{ game().title }}</span>
+      </div>
+    }
+
+    <div class="game-card__overlay">
+      <span class="game-card__state">{{ statusMeta().label }}</span>
+      <span class="game-card__cta">{{ statusMeta().actionLabel }}</span>
+    </div>
   </div>
 
-  <p class="game-card__summary">{{ game().summary }}</p>
+  <div class="game-card__body">
+    <p class="game-card__slug">{{ game().slug }}</p>
+    <h3>{{ game().title }}</h3>
 
-  <ul class="game-card__tags" aria-label="Etiquetas del juego">
-    @for (tag of game().tags; track tag) {
-      <li>{{ tag }}</li>
+    @if (game().tags.length) {
+      <span class="game-card__tag">{{ game().tags[0] }}</span>
     }
-  </ul>
-
-  <div class="game-card__footer">
-    <span class="game-card__resolution">{{ game().canvas.width }} x {{ game().canvas.height }}</span>
-    <a class="game-card__launch" [routerLink]="game().routePath">Cargar modulo</a>
   </div>
 </article>

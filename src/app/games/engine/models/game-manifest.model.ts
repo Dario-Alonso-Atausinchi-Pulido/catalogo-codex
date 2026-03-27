@@ -1,6 +1,6 @@
 import { CanvasStageConfig } from './canvas-stage-config.model';
 
-export type GameDevelopmentStatus = 'planned' | 'prototype' | 'published';
+export type GameAvailabilityStatus = 'available' | 'coming-soon' | 'locked';
 
 export interface GameManifest {
   order: number;
@@ -8,9 +8,10 @@ export interface GameManifest {
   title: string;
   summary: string;
   routePath: string;
-  status: GameDevelopmentStatus;
+  status: GameAvailabilityStatus;
   tags: string[];
   assetsBasePath: string;
   canvas: CanvasStageConfig;
   coverImagePath?: string;
+  coverPlaceholderPath?: string;
 }
