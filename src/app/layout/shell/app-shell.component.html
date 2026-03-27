@@ -107,10 +107,10 @@
 
         <div class="arcade-now-playing__copy">
           <span class="arcade-now-playing__eyebrow">
-            {{ currentGame() ? 'Jugando ahora' : 'Biblioteca lista' }}
+            {{ currentGame() ? 'Jugando ahora' : totalGames ? 'Biblioteca lista' : 'Biblioteca vacia' }}
           </span>
-          <strong>{{ currentGame()?.title ?? 'Elige un juego' }}</strong>
-          <small>{{ currentGame()?.slug ?? totalGames + ' juegos listos' }}</small>
+          <strong>{{ currentGame()?.title ?? (totalGames ? 'Elige un juego' : 'Sin juegos cargados') }}</strong>
+          <small>{{ currentGame()?.slug ?? (totalGames ? totalGames + ' juegos listos' : 'Listo para registrar el primero') }}</small>
         </div>
       </article>
 
