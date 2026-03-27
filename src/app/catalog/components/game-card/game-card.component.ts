@@ -7,21 +7,18 @@ import {
 
 const STATUS_META: Record<
   GameAvailabilityStatus,
-  { label: string; actionLabel: string; tone: GameAvailabilityStatus }
+  { label: string; tone: GameAvailabilityStatus }
 > = {
   available: {
     label: 'Disponible',
-    actionLabel: 'Entrar',
     tone: 'available'
   },
   'coming-soon': {
     label: 'Proximamente',
-    actionLabel: 'Pronto',
     tone: 'coming-soon'
   },
   locked: {
     label: 'Bloqueado',
-    actionLabel: 'Cerrado',
     tone: 'locked'
   }
 };

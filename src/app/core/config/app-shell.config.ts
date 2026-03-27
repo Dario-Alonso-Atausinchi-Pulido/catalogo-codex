@@ -11,8 +11,8 @@ export interface AppShellConfig {
 }
 
 export const APP_SHELL_CONFIG: AppShellConfig = {
-  brand: 'Catalogo arcade',
-  tagline: 'Base modular para minijuegos en Angular y HTML Canvas.',
+  brand: 'ZONA DE JUEGOS',
+  tagline: 'Elige tu siguiente partida y entra directo a la cabina.',
   navigation: [
     {
       label: 'Catalogo',

@@ -8,23 +8,29 @@
             routerLink="/catalog"
             aria-label="Ir al catalogo principal"
           >
-            <span class="brand__badge">1UP</span>
+            <span class="brand__badge" aria-hidden="true">
+              <svg viewBox="0 0 32 32" focusable="false">
+                <rect x="14" y="3" width="4" height="4" />
+                <rect x="12" y="7" width="8" height="4" />
+                <rect x="8" y="11" width="16" height="4" />
+                <rect x="6" y="15" width="20" height="4" />
+                <rect x="4" y="19" width="24" height="4" />
+                <rect x="8" y="23" width="5" height="4" />
+                <rect x="19" y="23" width="5" height="4" />
+                <rect x="14" y="15" width="4" height="8" />
+                <rect x="10" y="27" width="4" height="3" />
+                <rect x="18" y="27" width="4" height="3" />
+              </svg>
+            </span>
             <span class="brand__copy">
               <strong>{{ shell.brand }}</strong>
               <small>{{ shell.tagline }}</small>
             </span>
           </a>
-
-          <div class="arcade-monitor__status" aria-label="Estado del sistema">
-            <span class="status-chip">{{ isGameRoute() ? 'Juego' : 'Listo' }}</span>
-            <span class="status-text">
-              {{ isGameRoute() ? 'Sesion de juego activa' : 'Biblioteca arcade activa' }}
-            </span>
-          </div>
         </header>
 
         <div class="arcade-monitor__hud" aria-hidden="true">
-          <span>1UP</span>
+          <span>Jugador 01</span>
           <span>{{ isGameRoute() ? 'Modo juego' : 'Catalogo' }}</span>
           <span>{{ isFullscreenActive() ? 'Pantalla completa' : 'Credito 01' }}</span>
         </div>
