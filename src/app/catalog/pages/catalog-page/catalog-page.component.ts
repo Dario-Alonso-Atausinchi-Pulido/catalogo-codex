@@ -25,17 +25,17 @@ export class CatalogPageComponent {
   ];
   readonly architecturePillars = [
     {
-      title: 'Catalogo separado del motor canvas',
+      title: 'Catalogo desacoplado',
       description:
         'La UI del catalogo vive en su propia feature y consume un registro central de juegos. El motor base queda desacoplado de la navegacion y de la capa visual del catalogo.'
     },
     {
-      title: 'Juegos encapsulados por slug',
+      title: 'Juegos por slug',
       description:
         'Cada juego futuro tendra su propio folder, sus rutas, sus escenas, su UI y su config. Eso evita cruces de imports entre juegos y mantiene el crecimiento bajo control.'
     },
     {
-      title: 'Assets ordenados por dominio',
+      title: 'Assets por dominio',
       description:
         'Los recursos globales viven en public/assets/global y los recursos de un juego se guardan solo dentro de public/assets/games/<game-slug>/.'
     }

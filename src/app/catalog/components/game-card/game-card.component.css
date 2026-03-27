@@ -6,68 +6,104 @@
   display: grid;
   gap: 1rem;
   min-height: 100%;
-  padding: 1.5rem;
+  padding: 1.35rem;
 }
 
 .game-card__header,
 .game-card__footer {
+  position: relative;
+  z-index: 1;
   display: flex;
   align-items: center;
   justify-content: space-between;
   gap: 1rem;
 }
 
+.game-card__title-block {
+  display: grid;
+  gap: 0.4rem;
+}
+
 .game-card__header h3 {
+  color: #fff1b6;
   font-family: var(--font-display);
-  font-size: 1.7rem;
-  line-height: 0.95;
-  margin-top: 0.4rem;
+  font-size: 1.85rem;
+  font-weight: 400;
+  line-height: 0.9;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
 }
 
 .game-card__status,
-.game-card__footer span,
-.game-card__footer a {
+.game-card__resolution,
+.game-card__launch {
   border-radius: 999px;
-  padding: 0.45rem 0.8rem;
-  font-size: 0.88rem;
+  padding: 0.55rem 0.9rem;
+  font-family: var(--font-mono);
+  font-size: 0.8rem;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
 }
 
-.game-card__status,
-.game-card__footer span {
-  background: rgba(39, 76, 119, 0.08);
-  color: var(--color-accent-deep);
+.game-card__status {
+  border: 1px solid rgba(255, 77, 207, 0.22);
+  background: rgba(255, 77, 207, 0.12);
+  color: #ffb3ee;
 }
 
 .game-card__summary {
+  position: relative;
+  z-index: 1;
   color: var(--color-muted);
-  line-height: 1.6;
+  line-height: 1.65;
 }
 
 .game-card__tags {
+  position: relative;
+  z-index: 1;
   display: flex;
   flex-wrap: wrap;
-  gap: 0.7rem;
+  gap: 0.65rem;
   list-style: none;
   padding: 0;
 }
 
 .game-card__tags li {
-  border: 1px solid rgba(11, 143, 123, 0.16);
+  border: 1px solid rgba(87, 232, 255, 0.18);
   border-radius: 999px;
-  padding: 0.45rem 0.8rem;
-  background: rgba(11, 143, 123, 0.08);
-  color: var(--color-accent-alt);
-  font-size: 0.84rem;
+  padding: 0.45rem 0.75rem;
+  background: rgba(87, 232, 255, 0.08);
+  color: #a4f4ff;
+  font-family: var(--font-mono);
+  font-size: 0.76rem;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
 }
 
-.game-card__footer a {
-  background: rgba(255, 107, 53, 0.14);
-  color: var(--color-ink);
-  transition: background-color 160ms ease;
+.game-card__resolution {
+  border: 1px solid rgba(255, 213, 79, 0.18);
+  background: rgba(255, 213, 79, 0.08);
+  color: #ffe7a0;
 }
 
-.game-card__footer a:hover {
-  background: rgba(255, 107, 53, 0.22);
+.game-card__launch {
+  background:
+    linear-gradient(180deg, #ffe482 0%, #ff9548 46%, #cf4024 100%);
+  color: #1a0d08;
+  font-weight: 700;
+  box-shadow:
+    0 10px 20px rgba(0, 0, 0, 0.28),
+    inset 0 1px 0 rgba(255, 255, 255, 0.16);
+  transition:
+    transform 160ms ease,
+    box-shadow 160ms ease;
+}
+
+.game-card__launch:hover {
+  transform: translateY(-2px);
+  box-shadow:
+    0 14px 22px rgba(0, 0, 0, 0.34),
+    inset 0 1px 0 rgba(255, 255, 255, 0.16);
 }
 
 @media (max-width: 540px) {

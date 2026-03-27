@@ -1,41 +1,69 @@
-<div class="shell">
-  <header class="shell-header">
-    <div class="page-shell shell-header__inner">
-      <a
-        class="brand"
-        routerLink="/catalog"
-        aria-label="Ir al catalogo principal"
-      >
-        <span class="brand__badge">AC</span>
-        <span class="brand__copy">
-          <strong>{{ shell.brand }}</strong>
-          <small>{{ shell.tagline }}</small>
-        </span>
-      </a>
+<div class="arcade-shell">
+  <section class="arcade-monitor" aria-label="Pantalla principal del arcade">
+    <div class="arcade-monitor__frame page-shell">
+      <div class="arcade-monitor__glass">
+        <header class="arcade-monitor__header">
+          <a
+            class="brand"
+            routerLink="/catalog"
+            aria-label="Ir al catalogo principal"
+          >
+            <span class="brand__badge">1UP</span>
+            <span class="brand__copy">
+              <strong>{{ shell.brand }}</strong>
+              <small>{{ shell.tagline }}</small>
+            </span>
+          </a>
 
-      <nav class="shell-nav" aria-label="Navegacion principal">
+          <div class="arcade-monitor__status" aria-label="Estado del sistema">
+            <span class="status-chip">Ready</span>
+            <span class="status-text">Cabina modular activa</span>
+          </div>
+        </header>
+
+        <div class="arcade-monitor__hud" aria-hidden="true">
+          <span>1UP</span>
+          <span>Player Catalog</span>
+          <span>Credits 01</span>
+        </div>
+
+        <main class="arcade-monitor__viewport">
+          <router-outlet />
+        </main>
+      </div>
+    </div>
+  </section>
+
+  <footer class="arcade-controls" aria-label="Panel de control del arcade">
+    <div class="arcade-controls__panel page-shell">
+      <div class="arcade-controls__info">
+        <p class="arcade-controls__label">Panel de control</p>
+        <p class="arcade-controls__note">{{ shell.footerNote }}</p>
+      </div>
+
+      <nav class="arcade-controls__nav" aria-label="Navegacion principal">
         @for (item of shell.navigation; track item.path) {
           <a
-            class="shell-nav__link"
+            class="control-button"
             [routerLink]="item.path"
             routerLinkActive="is-active"
             [routerLinkActiveOptions]="{ exact: true }"
           >
-            {{ item.label }}
+            <span class="control-button__led" aria-hidden="true"></span>
+            <span class="control-button__text">{{ item.label }}</span>
           </a>
         }
       </nav>
-    </div>
-  </header>
 
-  <main class="shell-main">
-    <router-outlet />
-  </main>
+      <div class="arcade-controls__hardware" aria-hidden="true">
+        <div class="joystick-base"></div>
 
-  <footer class="shell-footer">
-    <div class="page-shell shell-footer__inner">
-      <p>{{ shell.footerNote }}</p>
-      <p>Angular + TypeScript + HTML Canvas</p>
+        <div class="action-buttons">
+          <span class="action-button action-button--cyan"></span>
+          <span class="action-button action-button--magenta"></span>
+          <span class="action-button action-button--amber"></span>
+        </div>
+      </div>
     </div>
   </footer>
 </div>

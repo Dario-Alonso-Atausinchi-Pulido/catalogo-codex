@@ -1,114 +1,412 @@
 :host {
   display: block;
+  height: 100%;
+  overflow: hidden;
 }
 
-.shell {
+.arcade-shell {
+  height: 100dvh;
+  overflow: hidden;
   display: grid;
-  grid-template-rows: auto 1fr auto;
-  min-height: 100dvh;
+  grid-template-rows: minmax(0, 80%) minmax(0, 20%);
+  padding: clamp(0.45rem, 0.9vw, 0.85rem);
 }
 
-.shell-header {
-  position: sticky;
-  top: 0;
-  z-index: 20;
-  border-bottom: 1px solid var(--color-line);
-  background: rgba(251, 247, 241, 0.82);
-  backdrop-filter: blur(18px);
+.arcade-monitor,
+.arcade-controls,
+.arcade-monitor__frame,
+.arcade-monitor__glass {
+  min-height: 0;
 }
 
-.shell-header__inner,
-.shell-footer__inner {
+.arcade-monitor {
+  padding-bottom: clamp(0.35rem, 0.8vh, 0.6rem);
+}
+
+.arcade-monitor__frame {
+  height: 100%;
+  padding: clamp(0.7rem, 1vw, 1rem);
+  border-radius: 36px;
+  background: linear-gradient(180deg, #3e3646 0%, #18151d 34%, #08090f 100%);
+  box-shadow:
+    inset 0 2px 0 rgba(255, 255, 255, 0.08),
+    0 30px 70px rgba(0, 0, 0, 0.44);
+}
+
+.arcade-monitor__glass {
+  position: relative;
+  height: 100%;
+  overflow: hidden;
+  display: grid;
+  grid-template-rows: auto auto minmax(0, 1fr);
+  border: 1px solid rgba(87, 232, 255, 0.22);
+  border-radius: 24px;
+  background:
+    radial-gradient(circle at top center, rgba(87, 232, 255, 0.1), transparent 30%),
+    linear-gradient(180deg, rgba(9, 19, 39, 0.98), rgba(2, 5, 14, 1));
+  box-shadow:
+    inset 0 0 56px rgba(87, 232, 255, 0.08),
+    inset 0 -24px 40px rgba(0, 0, 0, 0.45);
+}
+
+.arcade-monitor__glass::before,
+.arcade-monitor__glass::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+}
+
+.arcade-monitor__glass::before {
+  background:
+    linear-gradient(180deg, rgba(255, 255, 255, 0.14), transparent 26%),
+    repeating-linear-gradient(
+      180deg,
+      rgba(255, 255, 255, 0.045) 0 1px,
+      transparent 1px 4px
+    );
+  opacity: 0.28;
+}
+
+.arcade-monitor__glass::after {
+  background: radial-gradient(circle at center, transparent 54%, rgba(0, 0, 0, 0.5) 100%);
+}
+
+.arcade-monitor__header,
+.arcade-monitor__hud,
+.arcade-monitor__viewport {
+  position: relative;
+  z-index: 1;
+}
+
+.arcade-monitor__header {
   display: flex;
   align-items: center;
   justify-content: space-between;
   gap: 1rem;
-  padding: 1rem 0;
+  padding: 1rem 1.1rem 0.7rem;
+  border-bottom: 1px solid rgba(87, 232, 255, 0.12);
+  background: linear-gradient(180deg, rgba(6, 13, 27, 0.72), rgba(6, 13, 27, 0.24));
 }
 
 .brand {
   display: inline-flex;
   align-items: center;
-  gap: 0.9rem;
+  gap: 0.85rem;
+  min-width: 0;
 }
 
 .brand__badge {
   display: grid;
   place-items: center;
-  width: 3rem;
-  height: 3rem;
-  border-radius: 1rem;
-  background: linear-gradient(135deg, var(--color-accent), var(--color-accent-deep));
-  color: #fffaf2;
+  width: 3.55rem;
+  height: 3.55rem;
+  flex: none;
+  border: 1px solid rgba(255, 213, 79, 0.35);
+  border-radius: 1.1rem;
+  background:
+    radial-gradient(circle at 30% 25%, rgba(255, 255, 255, 0.24), transparent 34%),
+    linear-gradient(180deg, #ffcc42 0%, #f96d2f 52%, #b33024 100%);
+  color: #fff6da;
   font-family: var(--font-display);
-  font-size: 1rem;
-  font-weight: 800;
+  font-size: 1.35rem;
   letter-spacing: 0.08em;
-  box-shadow: 0 14px 28px rgba(39, 76, 119, 0.24);
+  box-shadow:
+    0 0 0 4px rgba(255, 95, 68, 0.18),
+    0 14px 24px rgba(0, 0, 0, 0.28);
 }
 
 .brand__copy {
   display: grid;
   gap: 0.2rem;
+  min-width: 0;
 }
 
 .brand__copy strong {
+  color: #fff1b6;
   font-family: var(--font-display);
-  font-size: 1.05rem;
-  letter-spacing: 0.04em;
+  font-size: clamp(1.45rem, 2vw, 2.2rem);
+  font-weight: 400;
+  letter-spacing: 0.08em;
+  line-height: 0.92;
+  text-transform: uppercase;
 }
 
-.brand__copy small {
+.brand__copy small,
+.status-text {
   color: var(--color-muted);
   font-size: 0.82rem;
+  line-height: 1.3;
 }
 
-.shell-nav {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 0.7rem;
-}
-
-.shell-nav__link {
-  border: 1px solid transparent;
+.arcade-monitor__status {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.65rem;
+  border: 1px solid rgba(87, 232, 255, 0.14);
   border-radius: 999px;
-  padding: 0.7rem 1rem;
-  color: var(--color-muted);
+  padding: 0.45rem 0.7rem 0.45rem 0.45rem;
+  background: rgba(6, 13, 27, 0.7);
+}
+
+.status-chip,
+.arcade-monitor__hud,
+.arcade-controls__label,
+.control-button {
+  font-family: var(--font-mono);
+  text-transform: uppercase;
+}
+
+.status-chip {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 1.9rem;
+  padding: 0.3rem 0.72rem;
+  border-radius: 999px;
+  background: linear-gradient(180deg, #3af1ff, #1296d1);
+  color: #031722;
+  font-size: 0.74rem;
+  font-weight: 700;
+  letter-spacing: 0.18em;
+  box-shadow: 0 0 18px rgba(87, 232, 255, 0.26);
+}
+
+.arcade-monitor__hud {
+  display: flex;
+  justify-content: space-between;
+  gap: 1rem;
+  padding: 0.55rem 1.1rem 0;
+  color: rgba(179, 234, 255, 0.72);
+  font-size: 0.72rem;
+  letter-spacing: 0.18em;
+  text-shadow: 0 0 12px rgba(87, 232, 255, 0.28);
+}
+
+.arcade-monitor__viewport {
+  min-height: 0;
+  overflow: auto;
+  padding: 0.8rem 0.85rem 1rem;
+  scrollbar-color: rgba(87, 232, 255, 0.32) rgba(7, 11, 22, 0.8);
+}
+
+.arcade-controls {
+  min-height: 0;
+  padding-top: clamp(0.35rem, 0.8vh, 0.6rem);
+}
+
+.arcade-controls__panel {
+  height: 100%;
+  min-height: 0;
+  display: grid;
+  grid-template-columns: minmax(180px, 0.9fr) minmax(0, 1.3fr) auto;
+  align-items: center;
+  gap: 1rem;
+  padding: 0.9rem 1.1rem;
+  border: 1px solid rgba(255, 213, 79, 0.2);
+  border-radius: 32px;
+  background:
+    linear-gradient(180deg, rgba(76, 31, 24, 0.92), rgba(30, 15, 23, 0.98)),
+    linear-gradient(90deg, rgba(255, 95, 68, 0.14), transparent 30%);
+  box-shadow:
+    0 24px 50px rgba(0, 0, 0, 0.4),
+    inset 0 1px 0 rgba(255, 255, 255, 0.06);
+}
+
+.arcade-controls__info {
+  display: grid;
+  gap: 0.3rem;
+}
+
+.arcade-controls__label {
+  color: #fff0aa;
+  font-size: 0.74rem;
+  font-weight: 700;
+  letter-spacing: 0.22em;
+}
+
+.arcade-controls__note {
+  color: rgba(244, 247, 255, 0.82);
+  line-height: 1.35;
+}
+
+.arcade-controls__nav {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.85rem;
+  min-width: 0;
+  overflow-x: auto;
+  overflow-y: hidden;
+  padding-bottom: 0.15rem;
+  scrollbar-width: thin;
+}
+
+.control-button {
+  flex: 0 0 auto;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.7rem;
+  min-width: 12rem;
+  padding: 0.95rem 1.35rem;
+  border: 1px solid rgba(255, 213, 79, 0.34);
+  border-radius: 999px;
+  background: linear-gradient(180deg, #ffb54a 0%, #ff7d35 42%, #c23a24 100%);
+  color: #fff7e7;
+  font-size: 0.96rem;
+  font-weight: 700;
+  letter-spacing: 0.16em;
+  box-shadow: 0 14px 24px rgba(0, 0, 0, 0.32), inset 0 1px 0 rgba(255, 255, 255, 0.18);
   transition:
-    border-color 160ms ease,
-    background-color 160ms ease,
-    color 160ms ease;
+    transform 160ms ease,
+    box-shadow 160ms ease;
 }
 
-.shell-nav__link:hover,
-.shell-nav__link.is-active {
-  border-color: rgba(255, 107, 53, 0.18);
-  background: rgba(255, 107, 53, 0.1);
-  color: var(--color-ink);
+.control-button:hover {
+  transform: translateY(-2px);
 }
 
-.shell-main {
-  padding-bottom: 2rem;
+.control-button.is-active {
+  border-color: rgba(87, 232, 255, 0.46);
+  background: linear-gradient(180deg, #8ffaff 0%, #3cc0ff 46%, #166fd0 100%);
+  color: #031826;
+  box-shadow: 0 0 22px rgba(87, 232, 255, 0.24), 0 16px 28px rgba(0, 0, 0, 0.36);
 }
 
-.shell-footer {
-  border-top: 1px solid var(--color-line);
+.control-button__led {
+  width: 0.78rem;
+  height: 0.78rem;
+  flex: none;
+  border-radius: 50%;
+  background: var(--color-accent-amber);
+  box-shadow: 0 0 0 4px rgba(255, 213, 79, 0.14), 0 0 14px rgba(255, 213, 79, 0.48);
 }
 
-.shell-footer__inner {
-  color: var(--color-muted);
-  font-size: 0.92rem;
+.control-button.is-active .control-button__led {
+  background: var(--color-accent-alt);
+  box-shadow: 0 0 0 4px rgba(87, 232, 255, 0.14), 0 0 16px rgba(87, 232, 255, 0.54);
+}
+
+.arcade-controls__hardware {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.9rem;
+}
+
+.joystick-base {
+  position: relative;
+  width: 4.45rem;
+  height: 4.45rem;
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  border-radius: 50%;
+  background:
+    radial-gradient(circle at 35% 30%, rgba(255, 255, 255, 0.08), transparent 34%),
+    linear-gradient(180deg, #2a2b3d 0%, #0d111d 100%);
+  box-shadow: inset 0 0 18px rgba(255, 255, 255, 0.04), 0 14px 24px rgba(0, 0, 0, 0.3);
+}
+
+.joystick-base::before,
+.joystick-base::after {
+  content: '';
+  position: absolute;
+  left: 50%;
+  transform: translateX(-50%);
+}
+
+.joystick-base::before {
+  bottom: 1.65rem;
+  width: 0.9rem;
+  height: 1.85rem;
+  border-radius: 999px;
+  background: linear-gradient(180deg, #d2def7 0%, #7586ab 100%);
+}
+
+.joystick-base::after {
+  top: 0.62rem;
+  width: 1.9rem;
+  height: 1.9rem;
+  border-radius: 50%;
+  background:
+    radial-gradient(circle at 35% 30%, rgba(255, 255, 255, 0.35), transparent 40%),
+    linear-gradient(180deg, #ff5e61 0%, #aa1639 100%);
+  box-shadow: 0 0 18px rgba(255, 77, 95, 0.34);
+}
+
+.action-buttons {
+  display: flex;
+  gap: 0.65rem;
+}
+
+.action-button {
+  width: 2.45rem;
+  height: 2.45rem;
+  border-radius: 50%;
+  box-shadow:
+    inset 0 1px 0 rgba(255, 255, 255, 0.18),
+    inset 0 -8px 10px rgba(0, 0, 0, 0.3),
+    0 10px 16px rgba(0, 0, 0, 0.28);
+}
+
+.action-button--cyan {
+  background: linear-gradient(180deg, #6efbff 0%, #128bd8 100%);
+}
+
+.action-button--magenta {
+  background: linear-gradient(180deg, #ff96ea 0%, #cd2f8f 100%);
+}
+
+.action-button--amber {
+  background: linear-gradient(180deg, #ffe88d 0%, #d67c1a 100%);
+}
+
+@media (max-width: 960px) {
+  .arcade-controls__panel {
+    grid-template-columns: minmax(0, 1fr) auto;
+  }
+
+  .arcade-controls__info {
+    display: none;
+  }
 }
 
 @media (max-width: 720px) {
-  .shell-header__inner,
-  .shell-footer__inner {
-    flex-direction: column;
-    align-items: flex-start;
+  .arcade-shell {
+    padding: 0.4rem;
   }
 
-  .brand__copy small,
-  .shell-footer__inner {
-    max-width: none;
+  .arcade-monitor__header {
+    padding: 0.8rem 0.85rem 0.6rem;
+  }
+
+  .brand__badge {
+    width: 3rem;
+    height: 3rem;
+    font-size: 1.15rem;
+  }
+
+  .brand__copy strong {
+    font-size: 1.55rem;
+  }
+
+  .status-text,
+  .arcade-controls__hardware {
+    display: none;
+  }
+
+  .arcade-monitor__hud {
+    padding-inline: 0.85rem;
+    font-size: 0.64rem;
+  }
+
+  .arcade-controls__panel {
+    grid-template-columns: 1fr;
+    justify-items: center;
+    padding-block: 0.8rem;
+  }
+
+  .arcade-controls__nav {
+    width: 100%;
+    justify-content: flex-start;
   }
 }

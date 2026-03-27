@@ -1,39 +1,50 @@
 <section class="catalog-page page-shell">
-  <section class="catalog-hero panel-surface">
-    <div class="catalog-hero__copy">
-      <p class="eyebrow">Catalogo de minijuegos arcade</p>
-      <h1>Base limpia para crecer juego por juego.</h1>
+  <header class="catalog-head panel-surface">
+    <div class="catalog-head__copy">
+      <p class="eyebrow">Arcade central</p>
+      <h1>Selector de minijuegos listo para poblar la cabina.</h1>
       <p>
-        El proyecto queda dividido entre shell, catalogo, engine canvas y biblioteca de juegos para
-        que cada episodio se agregue sin contaminar el resto de la aplicacion.
+        El shell sostiene la maquina, el catalogo ordena los slots y cada juego futuro entra como
+        modulo aislado.
       </p>
     </div>
 
-    <div class="catalog-hero__stats">
-      <article class="stat-card">
-        <span class="stat-card__label">Juegos registrados</span>
+    <div class="catalog-head__readouts" aria-label="Estado del sistema">
+      <article class="readout-card">
+        <span class="readout-card__label">Juegos</span>
         <strong>{{ games.length }}</strong>
       </article>
 
-      <article class="stat-card">
-        <span class="stat-card__label">Estado actual</span>
-        <strong>Base lista</strong>
+      <article class="readout-card">
+        <span class="readout-card__label">Estado</span>
+        <strong>Ready</strong>
+      </article>
+
+      <article class="readout-card">
+        <span class="readout-card__label">Modo</span>
+        <strong>Modular</strong>
       </article>
     </div>
-  </section>
+  </header>
 
-  <section class="catalog-section">
-    <div class="catalog-section__heading">
+  <section class="catalog-bay panel-surface">
+    <div class="catalog-bay__heading">
       <div>
-        <p class="eyebrow">Biblioteca</p>
-        <h2>Catalogo principal</h2>
+        <p class="eyebrow">Biblioteca principal</p>
+        <h2>Selector de cartuchos</h2>
       </div>
 
-      <p>
-        La grilla consumira el registro central de juegos cuando empieces a agregar episodios y rutas
-        individuales.
-      </p>
+      <div class="catalog-bay__signals" aria-label="Principios del sistema">
+        @for (pillar of architecturePillars; track pillar.title) {
+          <span>{{ pillar.title }}</span>
+        }
+      </div>
     </div>
+
+    <p class="catalog-bay__intro">
+      La pantalla superior mantiene el catalogo y los juegos; el panel inferior queda reservado para
+      controles persistentes del gabinete.
+    </p>
 
     @if (games.length) {
       <div class="catalog-grid">
@@ -47,16 +58,6 @@
         description="La arquitectura ya esta preparada para que cada juego entre como una feature encapsulada, con su ruta, su manifiesto y sus assets aislados."
         [notes]="onboardingSteps"
       />
-    }
-  </section>
-
-  <section class="catalog-principles">
-    @for (pillar of architecturePillars; track pillar.title) {
-      <article class="principle-card panel-surface">
-        <p class="eyebrow">Principio</p>
-        <h3>{{ pillar.title }}</h3>
-        <p>{{ pillar.description }}</p>
-      </article>
     }
   </section>
 </section>
