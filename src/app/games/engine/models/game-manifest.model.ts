@@ -6,6 +6,7 @@ export interface GameManifest {
   order: number;
   slug: string;
   title: string;
+  subtitle?: string;
   summary: string;
   routePath: string;
   status: GameAvailabilityStatus;

@@ -119,6 +119,18 @@
   text-transform: uppercase;
 }
 
+.game-card__subtitle {
+  color: #ff9fc6;
+  font-size: 0.82rem;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+}
+
+.game-card__summary {
+  color: var(--color-muted);
+  line-height: 1.45;
+}
+
 .game-card__tag {
   justify-self: start;
   border-radius: 999px;

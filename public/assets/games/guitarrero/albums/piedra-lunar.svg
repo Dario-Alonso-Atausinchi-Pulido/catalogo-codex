@@ -1,0 +1,20 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" role="img" aria-label="Piedra Lunar">
+  <defs>
+    <linearGradient id="bg" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#24111c" />
+      <stop offset="55%" stop-color="#10172b" />
+      <stop offset="100%" stop-color="#05070d" />
+    </linearGradient>
+    <linearGradient id="moon" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#ffd166" />
+      <stop offset="100%" stop-color="#ff8c42" />
+    </linearGradient>
+  </defs>
+  <rect width="512" height="512" rx="38" fill="url(#bg)" />
+  <circle cx="366" cy="134" r="70" fill="#5cf4ff" opacity="0.2" />
+  <circle cx="162" cy="178" r="120" fill="url(#moon)" />
+  <circle cx="210" cy="152" r="120" fill="#141a27" />
+  <path d="M90 364c54-42 106-63 156-63 48 0 98 17 150 50v74H90z" fill="#131a28" stroke="#5cf4ff" stroke-opacity=".35" />
+  <text x="58" y="414" fill="#fff0bc" font-family="Impact, Arial Black, sans-serif" font-size="62" letter-spacing="4">PIEDRA</text>
+  <text x="60" y="460" fill="#8ef4ff" font-family="Consolas, monospace" font-size="24" letter-spacing="5">LUNAR</text>
+</svg>

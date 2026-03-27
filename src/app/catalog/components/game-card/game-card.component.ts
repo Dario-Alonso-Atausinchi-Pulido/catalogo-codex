@@ -1,4 +1,4 @@
-import { Component, computed, input, signal } from '@angular/core';
+import { Component, computed, effect, input, signal } from '@angular/core';
 import { RouterLink } from '@angular/router';
 import {
   GameAvailabilityStatus,
@@ -41,6 +41,14 @@ export class GameCardComponent {
     return this.game().coverImagePath ?? this.game().coverPlaceholderPath ?? '';
   });
   readonly hasCover = computed(() => Boolean(this.resolvedCoverPath()));
+
+  constructor() {
+    effect(() => {
+      this.game().coverImagePath;
+      this.game().coverPlaceholderPath;
+      this.coverLoadFailed.set(false);
+    });
+  }
 
   isAvailable(): boolean {
     return this.game().status === 'available';

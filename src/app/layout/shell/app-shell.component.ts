@@ -63,7 +63,10 @@ export class AppShellComponent {
 
   constructor() {
     effect(() => {
-      this.currentGame();
+      const currentGame = this.currentGame();
+
+      currentGame?.coverImagePath;
+      currentGame?.coverPlaceholderPath;
       this.nowPlayingCoverFallback.set(false);
     });
   }

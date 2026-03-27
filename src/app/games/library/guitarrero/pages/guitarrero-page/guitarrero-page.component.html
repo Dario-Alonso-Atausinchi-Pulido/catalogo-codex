@@ -1,0 +1,227 @@
+<section class="guitarrero-page" [class.guitarrero-page--playing]="isStageScreen()">
+  @if (screen() === 'menu') {
+    <section class="hero panel-surface gtr-panel gtr-panel--hero">
+      <div class="hero__copy">
+        <p class="eyebrow">Rhythm unit</p>
+        <h1>{{ manifest.title }}</h1>
+        <p class="hero__subtitle">{{ manifest.subtitle }}</p>
+        <p class="hero__summary">{{ manifest.summary }}</p>
+      </div>
+
+      <div class="hero__actions">
+        <a class="gtr-button gtr-button--ghost" routerLink="/catalog">Volver al catalogo</a>
+      </div>
+    </section>
+
+    <section class="menu-grid">
+      <article class="menu-card panel-surface gtr-panel">
+        <p class="eyebrow">Como jugar</p>
+        <h2>Golpea a tiempo</h2>
+        <ul class="menu-list">
+          <li>Toca <code>A S K L</code> cuando las notas lleguen a la linea de impacto.</li>
+          <li><code>Perfect</code> y <code>Good</code> suman combo; <code>Miss</code> lo rompe y castiga la musica.</li>
+          <li>Tras una buena racha cargas energia; al llenarla entras en modo morado neón y puntuas <code>x2</code>.</li>
+          <li><code>Space</code> pausa y reanuda la partida completa.</li>
+        </ul>
+
+        <div class="keys-strip" aria-label="Teclas de juego">
+          @for (key of laneKeys; track key) {
+            <span>{{ key }}</span>
+          }
+        </div>
+      </article>
+
+      <article class="menu-card panel-surface gtr-panel">
+        <p class="eyebrow">Canciones</p>
+        <h2>Selecciona una pista</h2>
+
+        <div class="song-list" role="list">
+          @for (song of songs; track song.id) {
+            <article
+              class="song-card"
+              role="listitem"
+              [class.is-selected]="song.id === selectedSongId()"
+              [style.--song-accent]="song.accentColor"
+            >
+              <button
+                class="song-card__select"
+                type="button"
+                [attr.aria-pressed]="song.id === selectedSongId()"
+                (click)="selectSong(song.id)"
+              >
+                <span class="song-card__copy">
+                  <strong>{{ song.title }}</strong>
+                  <small>{{ song.preview }}</small>
+                </span>
+                <span class="song-card__meta">
+                  <span>{{ song.difficultyLabel }}</span>
+                  <span>{{ song.bpm }} BPM</span>
+                  <span>{{ song.notes.length }} notas</span>
+                </span>
+              </button>
+
+              <button
+                class="song-card__album"
+                type="button"
+                [attr.aria-label]="'Jugar ' + song.title"
+                (click)="startSong(song.id)"
+              >
+                <img [src]="song.albumArtSrc" [alt]="'Album de ' + song.title" />
+              </button>
+            </article>
+          }
+        </div>
+      </article>
+    </section>
+  } @else if (screen() === 'playing') {
+    <section class="play-layout">
+      <section class="play-band play-band--top panel-surface gtr-panel gtr-panel--chrome">
+        <div class="play-band__main">
+          <p class="eyebrow">Cabina retro punk</p>
+          <h2>{{ selectedSong().title }}</h2>
+          <p>{{ manifest.subtitle }}</p>
+        </div>
+
+        <div class="top-stats">
+          <article>
+            <span>Score</span>
+            <strong>{{ hud().score }}</strong>
+          </article>
+          <article>
+            <span>Combo</span>
+            <strong>{{ hud().combo }}</strong>
+          </article>
+          <article>
+            <span>Max combo</span>
+            <strong>{{ hud().maxCombo }}</strong>
+          </article>
+          <article>
+            <span>Bonus</span>
+            <strong>x{{ hud().fever.multiplier }}</strong>
+          </article>
+        </div>
+
+        <button class="gtr-button gtr-button--ghost" type="button" (click)="backToMenu()">
+          Volver al menu
+        </button>
+      </section>
+
+      <section #playScreen class="play-screen panel-surface gtr-panel">
+        <div class="canvas-deck">
+          <div
+            class="canvas-viewport"
+            [style.width.px]="canvasViewport().width"
+            [style.height.px]="canvasViewport().height"
+          >
+            <div class="canvas-shell">
+              <canvas
+                #gameCanvas
+                [attr.width]="stage.width"
+                [attr.height]="stage.height"
+                aria-label="Gameplay de Guitarrero"
+              ></canvas>
+            </div>
+          </div>
+        </div>
+
+      </section>
+
+      <section class="play-band play-band--bottom panel-surface gtr-panel">
+        <article class="status-card">
+          <p class="eyebrow">Pista</p>
+          <strong class="status-card__main">{{ selectedSong().difficultyLabel }}</strong>
+          <small>{{ selectedSong().bpm }} BPM | {{ selectedSong().notes.length }} notas</small>
+        </article>
+
+        <article class="status-card">
+          <p class="eyebrow">Teclas</p>
+          <div class="keys-strip keys-strip--compact">
+            @for (key of laneKeys; track key) {
+              <span>{{ key }}</span>
+            }
+            <span class="keys-strip__pause">Space</span>
+          </div>
+        </article>
+
+        <article class="status-card">
+          <p class="eyebrow">Marcador</p>
+          <div class="sidebar__stats sidebar__stats--stack">
+            <span>Perfect {{ hud().counts.perfect }}</span>
+            <span>Good {{ hud().counts.good }}</span>
+            <span>Miss {{ hud().counts.miss }}</span>
+            <span>Racha {{ hud().fever.streak }}</span>
+          </div>
+        </article>
+      </section>
+    </section>
+  } @else {
+    @if (result(); as finalResult) {
+      <section class="play-layout play-layout--results">
+        <section class="play-band play-band--top panel-surface gtr-panel gtr-panel--chrome">
+          <div class="play-band__main">
+            <p class="eyebrow">Resultado final</p>
+            <h2>{{ finalResult.song.title }}</h2>
+            <p>{{ resultMoodMeta().label }} | {{ formatAccuracy(finalResult.accuracy) }} de pulso</p>
+          </div>
+
+          <div class="top-stats">
+            <article>
+              <span>Score</span>
+              <strong>{{ finalResult.score }}</strong>
+            </article>
+            <article>
+              <span>Combo max</span>
+              <strong>{{ finalResult.maxCombo }}</strong>
+            </article>
+            <article>
+              <span>Aciertos</span>
+              <strong>{{ finalResult.hits }}</strong>
+            </article>
+            <article>
+              <span>Fallos</span>
+              <strong>{{ finalResult.misses }}</strong>
+            </article>
+          </div>
+        </section>
+
+        <section class="play-screen panel-surface gtr-panel">
+          <div class="results-screen">
+            <article class="results-column results-column--left">
+              <img [src]="finalResult.song.albumArtSrc" [alt]="'Album de ' + finalResult.song.title" />
+              <div class="results-mini-grid">
+                <span>Perfect {{ finalResult.counts.perfect }}</span>
+                <span>Good {{ finalResult.counts.good }}</span>
+                <span>Miss {{ finalResult.counts.miss }}</span>
+              </div>
+            </article>
+
+            <article class="results-column results-column--center">
+              <p class="eyebrow">Marcador total</p>
+              <strong class="results-score">{{ finalResult.score }}</strong>
+              <p class="results-score__caption">La cabina queda temblando.</p>
+            </article>
+
+            <article class="results-column results-column--right">
+              <div class="results-meta">
+                <span>Combo maximo</span>
+                <strong>{{ finalResult.maxCombo }}</strong>
+              </div>
+              <div class="results-meta">
+                <span>Aciertos</span>
+                <strong>{{ finalResult.hits }}</strong>
+              </div>
+              <div class="results-actions">
+                <button class="gtr-button gtr-button--primary gtr-button--compact" type="button" (click)="repeatSelectedSong()">
+                  Repetir
+                </button>
+                <button class="gtr-button gtr-button--ghost gtr-button--compact" type="button" (click)="backToMenu()">
+                  Menu
+                </button>
+              </div>
+            </article>
+          </div>
+        </section>
+      </section>
+    }
+  }
+</section>

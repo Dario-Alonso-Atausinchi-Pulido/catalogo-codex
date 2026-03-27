@@ -1,0 +1,54 @@
+<svg width="1280" height="720" viewBox="0 0 1280 720" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <rect width="1280" height="720" fill="#050814"/>
+  <rect width="1280" height="720" fill="url(#bgGlow)"/>
+  <rect x="86" y="88" width="1108" height="544" rx="40" fill="url(#frame)" stroke="#57E8FF" stroke-opacity=".18"/>
+  <rect x="188" y="132" width="904" height="456" rx="30" fill="#07111F" stroke="#FFFFFF" stroke-opacity=".07"/>
+  <g opacity=".9">
+    <rect x="326" y="164" width="130" height="390" rx="22" fill="url(#laneA)"/>
+    <rect x="487" y="164" width="130" height="390" rx="22" fill="url(#laneB)"/>
+    <rect x="648" y="164" width="130" height="390" rx="22" fill="url(#laneC)"/>
+    <rect x="809" y="164" width="130" height="390" rx="22" fill="url(#laneD)"/>
+    <rect x="316" y="494" width="632" height="8" rx="4" fill="#FFE28F"/>
+    <path d="M391 262L424 295L391 328L358 295L391 262Z" fill="#FFD166"/>
+    <path d="M552 336L585 369L552 402L519 369L552 336Z" fill="#FF5C8A"/>
+    <path d="M713 238L746 271L713 304L680 271L713 238Z" fill="#5CF4FF"/>
+    <path d="M874 376L907 409L874 442L841 409L874 376Z" fill="#7BFF7A"/>
+  </g>
+  <g filter="url(#glow)">
+    <text x="112" y="598" fill="#FFF0B6" font-family="Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif" font-size="134" letter-spacing="10">GUITARRERO</text>
+  </g>
+  <text x="118" y="646" fill="#FF84B1" font-family="Bahnschrift, 'Segoe UI', sans-serif" font-size="34" letter-spacing="7">DURO COMO UNA PIEDRA</text>
+  <text x="946" y="620" fill="#9DEEFF" font-family="Consolas, 'Courier New', monospace" font-size="28" letter-spacing="4">RHYTHM / AVAILABLE</text>
+  <defs>
+    <filter id="glow" x="96" y="480" width="892" height="168" filterUnits="userSpaceOnUse" color-interpolation-filters="sRGB">
+      <feFlood flood-opacity="0" result="BackgroundImageFix"/>
+      <feBlend mode="normal" in="SourceGraphic" in2="BackgroundImageFix" result="shape"/>
+      <feGaussianBlur stdDeviation="12" result="effect1_foregroundBlur_27_42"/>
+    </filter>
+    <linearGradient id="frame" x1="640" y1="88" x2="640" y2="632" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#1C2641"/>
+      <stop offset="1" stop-color="#090D18"/>
+    </linearGradient>
+    <linearGradient id="laneA" x1="391" y1="164" x2="391" y2="554" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#FFD166" stop-opacity=".22"/>
+      <stop offset="1" stop-color="#0A1220"/>
+    </linearGradient>
+    <linearGradient id="laneB" x1="552" y1="164" x2="552" y2="554" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#FF5C8A" stop-opacity=".22"/>
+      <stop offset="1" stop-color="#0A1220"/>
+    </linearGradient>
+    <linearGradient id="laneC" x1="713" y1="164" x2="713" y2="554" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#5CF4FF" stop-opacity=".22"/>
+      <stop offset="1" stop-color="#0A1220"/>
+    </linearGradient>
+    <linearGradient id="laneD" x1="874" y1="164" x2="874" y2="554" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#7BFF7A" stop-opacity=".22"/>
+      <stop offset="1" stop-color="#0A1220"/>
+    </linearGradient>
+    <radialGradient id="bgGlow" cx="0" cy="0" r="1" gradientUnits="userSpaceOnUse" gradientTransform="translate(640 184) rotate(90) scale(310 520)">
+      <stop stop-color="#173055"/>
+      <stop offset=".48" stop-color="#111A34"/>
+      <stop offset="1" stop-color="#050814"/>
+    </radialGradient>
+  </defs>
+</svg>

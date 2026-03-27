@@ -1,0 +1,22 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" role="img" aria-label="Cobre y Neon">
+  <defs>
+    <linearGradient id="bg2" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#25081a" />
+      <stop offset="48%" stop-color="#10152a" />
+      <stop offset="100%" stop-color="#05070d" />
+    </linearGradient>
+    <linearGradient id="neon2" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#ff5c8a" />
+      <stop offset="100%" stop-color="#ffb347" />
+    </linearGradient>
+  </defs>
+  <rect width="512" height="512" rx="38" fill="url(#bg2)" />
+  <rect x="84" y="96" width="70" height="250" rx="18" fill="#20101c" stroke="#ff5c8a" stroke-opacity=".55" />
+  <rect x="174" y="76" width="70" height="270" rx="18" fill="#18172a" stroke="#ffd166" stroke-opacity=".55" />
+  <rect x="264" y="112" width="70" height="234" rx="18" fill="#1a1025" stroke="#5cf4ff" stroke-opacity=".55" />
+  <rect x="354" y="88" width="70" height="258" rx="18" fill="#132028" stroke="#7bff7a" stroke-opacity=".55" />
+  <circle cx="388" cy="120" r="86" fill="#ff5c8a" opacity="0.17" />
+  <path d="M84 390h340" stroke="url(#neon2)" stroke-width="18" stroke-linecap="round" />
+  <text x="60" y="436" fill="#fff0bc" font-family="Impact, Arial Black, sans-serif" font-size="58" letter-spacing="4">COBRE Y</text>
+  <text x="60" y="476" fill="#8ef4ff" font-family="Consolas, monospace" font-size="24" letter-spacing="6">NEON</text>
+</svg>

@@ -28,6 +28,10 @@
   <div class="game-card__body">
     <p class="game-card__slug">{{ game().slug }}</p>
     <h3>{{ game().title }}</h3>
+    @if (game().subtitle) {
+      <p class="game-card__subtitle">{{ game().subtitle }}</p>
+    }
+    <p class="game-card__summary">{{ game().summary }}</p>
 
     @if (game().tags.length) {
       <span class="game-card__tag">{{ game().tags[0] }}</span>
