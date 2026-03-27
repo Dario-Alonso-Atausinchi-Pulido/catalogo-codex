@@ -1,0 +1,62 @@
+<section class="catalog-page page-shell">
+  <section class="catalog-hero panel-surface">
+    <div class="catalog-hero__copy">
+      <p class="eyebrow">Catalogo de minijuegos arcade</p>
+      <h1>Base limpia para crecer juego por juego.</h1>
+      <p>
+        El proyecto queda dividido entre shell, catalogo, engine canvas y biblioteca de juegos para
+        que cada episodio se agregue sin contaminar el resto de la aplicacion.
+      </p>
+    </div>
+
+    <div class="catalog-hero__stats">
+      <article class="stat-card">
+        <span class="stat-card__label">Juegos registrados</span>
+        <strong>{{ games.length }}</strong>
+      </article>
+
+      <article class="stat-card">
+        <span class="stat-card__label">Estado actual</span>
+        <strong>Base lista</strong>
+      </article>
+    </div>
+  </section>
+
+  <section class="catalog-section">
+    <div class="catalog-section__heading">
+      <div>
+        <p class="eyebrow">Biblioteca</p>
+        <h2>Catalogo principal</h2>
+      </div>
+
+      <p>
+        La grilla consumira el registro central de juegos cuando empieces a agregar episodios y rutas
+        individuales.
+      </p>
+    </div>
+
+    @if (games.length) {
+      <div class="catalog-grid">
+        @for (game of games; track game.slug) {
+          <app-game-card [game]="game" />
+        }
+      </div>
+    } @else {
+      <app-empty-state-card
+        title="Todavia no hay juegos registrados"
+        description="La arquitectura ya esta preparada para que cada juego entre como una feature encapsulada, con su ruta, su manifiesto y sus assets aislados."
+        [notes]="onboardingSteps"
+      />
+    }
+  </section>
+
+  <section class="catalog-principles">
+    @for (pillar of architecturePillars; track pillar.title) {
+      <article class="principle-card panel-surface">
+        <p class="eyebrow">Principio</p>
+        <h3>{{ pillar.title }}</h3>
+        <p>{{ pillar.description }}</p>
+      </article>
+    }
+  </section>
+</section>

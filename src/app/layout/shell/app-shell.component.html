@@ -1,0 +1,41 @@
+<div class="shell">
+  <header class="shell-header">
+    <div class="page-shell shell-header__inner">
+      <a
+        class="brand"
+        routerLink="/catalog"
+        aria-label="Ir al catalogo principal"
+      >
+        <span class="brand__badge">AC</span>
+        <span class="brand__copy">
+          <strong>{{ shell.brand }}</strong>
+          <small>{{ shell.tagline }}</small>
+        </span>
+      </a>
+
+      <nav class="shell-nav" aria-label="Navegacion principal">
+        @for (item of shell.navigation; track item.path) {
+          <a
+            class="shell-nav__link"
+            [routerLink]="item.path"
+            routerLinkActive="is-active"
+            [routerLinkActiveOptions]="{ exact: true }"
+          >
+            {{ item.label }}
+          </a>
+        }
+      </nav>
+    </div>
+  </header>
+
+  <main class="shell-main">
+    <router-outlet />
+  </main>
+
+  <footer class="shell-footer">
+    <div class="page-shell shell-footer__inner">
+      <p>{{ shell.footerNote }}</p>
+      <p>Angular + TypeScript + HTML Canvas</p>
+    </div>
+  </footer>
+</div>

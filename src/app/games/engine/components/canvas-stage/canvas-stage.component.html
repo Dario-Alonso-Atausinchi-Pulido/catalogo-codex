@@ -1,0 +1,14 @@
+<section class="canvas-stage panel-surface">
+  <header class="canvas-stage__header">
+    <div>
+      <p class="eyebrow">Engine canvas</p>
+      <h2>{{ title() }}</h2>
+    </div>
+
+    <p>{{ description() }}</p>
+  </header>
+
+  <div class="canvas-stage__frame">
+    <canvas [attr.width]="width()" [attr.height]="height()"></canvas>
+  </div>
+</section>

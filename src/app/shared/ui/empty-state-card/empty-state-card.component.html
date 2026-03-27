@@ -1,0 +1,13 @@
+<section class="empty-state panel-surface">
+  <p class="eyebrow">{{ eyebrow() }}</p>
+  <h3>{{ title() }}</h3>
+  <p class="empty-state__description">{{ description() }}</p>
+
+  @if (notes().length) {
+    <ul class="empty-state__notes">
+      @for (note of notes(); track note) {
+        <li>{{ note }}</li>
+      }
+    </ul>
+  }
+</section>

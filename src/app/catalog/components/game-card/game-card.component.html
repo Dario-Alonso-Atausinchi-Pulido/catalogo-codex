@@ -1,0 +1,23 @@
+<article class="game-card panel-surface">
+  <div class="game-card__header">
+    <div>
+      <p class="eyebrow">{{ game().slug }}</p>
+      <h3>{{ game().title }}</h3>
+    </div>
+
+    <span class="game-card__status">{{ game().status }}</span>
+  </div>
+
+  <p class="game-card__summary">{{ game().summary }}</p>
+
+  <ul class="game-card__tags" aria-label="Etiquetas del juego">
+    @for (tag of game().tags; track tag) {
+      <li>{{ tag }}</li>
+    }
+  </ul>
+
+  <div class="game-card__footer">
+    <span>{{ game().canvas.width }} x {{ game().canvas.height }}</span>
+    <a [routerLink]="game().routePath">Abrir juego</a>
+  </div>
+</article>
